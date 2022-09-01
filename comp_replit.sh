@@ -10,7 +10,7 @@ argv () {
 
   for (( i=$#-2; i > -1; i-- ))
   do 
-    if ! cmp -s ${BASH_ARGV[i]} ".ultrasecret/.${BASH_ARGV[i]}" || test ! -f ./${BASH_ARGV[$#-1]}
+    if ! cmp -s ${BASH_ARGV[i]} ".ultrasecret/.${BASH_ARGV[i]##*/}" || test ! -f ./${BASH_ARGV[$#-1]}
     then 
       # se achou algum diferente ou nao existe arquivo compilado, compilo
       # compilar
