@@ -3,12 +3,14 @@
 shopt -s extdebug
 
 argv () {
-  
+
+  mkdir -p .ultrasecret
+
   # adicionar OR testando se o arquivo atual é diferente do oculto
 
   for (( i=$#-2; i > -1; i-- ))
   do 
-    if ! cmp -s ${BASH_ARGV[i]} ".${BASH_ARGV[i]}" || test ! -f ./${BASH_ARGV[$#-1]}
+    if ! cmp -s ${BASH_ARGV[i]} ".ultrasecret/.${BASH_ARGV[i]}" || test ! -f ./${BASH_ARGV[$#-1]}
     then 
       # se achou algum diferente ou nao existe arquivo compilado, compilo
       # compilar
@@ -36,7 +38,7 @@ argv () {
   # criar arquivo(s) oculto(s) contendo codigo 
   for (( i=$#-2; i > -1; i-- )) # pegando apenas arquivos .ml
   do
-    cp ${BASH_ARGV[i]} ".${BASH_ARGV[i]}" 
+    cp ${BASH_ARGV[i]} ".ultrasecret/.${BASH_ARGV[i]##*/}" 
   done
 }
 
